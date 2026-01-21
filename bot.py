@@ -1,12 +1,13 @@
 from amadeus import Client
 import requests
+import os
 
-# ====== CONFIGURAÇÕES ======
-AMADEUS_KEY = "zO7S04CFEAsguyQIfa79213eO46PwMLp"
-AMADEUS_SECRET = "oq0Sn9G8j4LAt1OD"
+# ====== CONFIGURAÇÕES VIA ENV ======
+AMADEUS_KEY = os.getenv("AMADEUS_CLIENT_ID")
+AMADEUS_SECRET = os.getenv("AMADEUS_CLIENT_SECRET")
 
-TELEGRAM_TOKEN = "8543963799:AAFtKzc_4zfIhw8tfNcodSTFc238LJvhiPA"
-CHAT_ID = "858610936"
+TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
+CHAT_ID = os.getenv("CHAT_ID")
 
 # ====== AMADEUS ======
 amadeus = Client(
@@ -43,6 +44,7 @@ payload = {
     "text": mensagem
 }
 
-requests.post(url, json=payload)
+resposta = requests.post(url, json=payload)
+print(resposta.text)
 
 print("Mensagem enviada com sucesso!")
