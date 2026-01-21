@@ -2,7 +2,7 @@ from amadeus import Client
 import requests
 import os
 
-# ====== CONFIGURAÇÕES VIA ENV ======
+# Pega os secrets do GitHub Actions
 AMADEUS_KEY = os.getenv("AMADEUS_CLIENT_ID")
 AMADEUS_SECRET = os.getenv("AMADEUS_CLIENT_SECRET")
 
@@ -38,13 +38,8 @@ Preço: R$ {preco}
 
 # ====== TELEGRAM ======
 url = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage"
-
-payload = {
-    "chat_id": CHAT_ID,
-    "text": mensagem
-}
+payload = {"chat_id": CHAT_ID, "text": mensagem}
 
 resposta = requests.post(url, json=payload)
 print(resposta.text)
-
 print("Mensagem enviada com sucesso!")
