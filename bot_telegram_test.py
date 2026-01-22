@@ -12,6 +12,3 @@ payload = {
     "chat_id": CHAT_ID,
     "text": mensagem
 }
-
-resposta = requests.post(url, json=payload)
-print("Resposta da API do Telegram:", resposta.text)
